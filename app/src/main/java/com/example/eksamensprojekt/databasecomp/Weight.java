@@ -6,10 +6,12 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverter;
 
+import com.jjoe64.graphview.series.DataPointInterface;
+
 import java.util.Date;
 
 @Entity(tableName = "Weight")
-public class Weight {
+public class Weight implements DataPointInterface {
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "Date")
@@ -25,4 +27,13 @@ public class Weight {
     }
 
 
+    @Override
+    public double getX() {
+        return mDate.getTime();
+    }
+
+    @Override
+    public double getY() {
+        return mWeight;
+    }
 }

@@ -20,9 +20,10 @@ private AppDatabase db;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
         db = AppDatabase.getAppDatabase(this);
+        db.activityDao().
         LineGraphSeries<Weight> series = new LineGraphSeries<Weight>(new Weight[] {
 
-        })
+        });
 
 
         Button buttonBack = findViewById(R.id.button9);
