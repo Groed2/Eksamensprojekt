@@ -33,9 +33,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
-
-
         adapter = new RecyclerViewAdapter(this);
 
         Button buttonStats = findViewById(R.id.button);
@@ -59,29 +56,19 @@ public class MainActivity extends AppCompatActivity {
 
         initRecyclerView();
     }
-
-
     public void nextViewStats(View v){
         Intent intent = new Intent(this, Statistics.class);
         startActivity(intent);
     }
-
     public void nextViewActivities(View v){
         Intent intent = new Intent(this, Activities.class);
         startActivity(intent);
     }
-
-
-
-
-
     private void initRecyclerView(){
         RecyclerView recyclerView = findViewById(R.id.recycler_View);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
-
-
 
     @Override
     protected void onResume() {
