@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverter;
 
 import java.util.Date;
 
@@ -15,6 +16,13 @@ public class Weight {
     public Date mDate;
     @ColumnInfo(name = "Weight")
     public Double mWeight;
+
+    public Weight (Double mWeight)
+    {
+        long date = System.currentTimeMillis();
+        this.mWeight = mWeight;
+        this.mDate = new Date(date);
+    }
 
 
 }

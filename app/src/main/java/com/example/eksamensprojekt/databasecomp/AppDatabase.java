@@ -5,8 +5,10 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 
-@Database(entities = {Activity.class}, version = 1, exportSchema = false)
+@Database(entities = {Activity.class,Weight.class,User.class}, version = 1, exportSchema = false)
+@TypeConverters({TypeConverterClass.class})
 public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase INSTANCE;
