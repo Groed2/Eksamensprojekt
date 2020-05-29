@@ -22,11 +22,10 @@
     android:id="@+id/GraphConstraint"
     android:layout_width="match_parent"
     android:layout_height="450dp">
-    <com.jjoe64.graphview.LineGraphView
-        android:id="@+id/StatGraph"
+    <com.jjoe64.graphview.GraphView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        />
+        android:id="@+id/Graph"></com.jjoe64.graphview.GraphView>
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

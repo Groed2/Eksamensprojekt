@@ -14,6 +14,12 @@ public interface ActivityDao {
     @Query("UPDATE activity SET activityDone = 1 WHERE uid = :uid")
     int updateActivityDone(int uid);
 
+    @Query("SELECT * FROM Weight")
+    public Weight[] loadAllWeightElements();
+
+    @Query("SELECT * FROM User")
+    public User[] loadAllUsers();
+
     @Query("SELECT * FROM Weight WHERE Date BETWEEN :startDate AND :endDate")
     public Weight[] loadAllWeightBetweenDates(int startDate, int endDate);
     @Update
@@ -36,6 +42,9 @@ public interface ActivityDao {
 
     @Query("SELECT COUNT(*) from activity")
     int countActivities();
+
+    @Query("SELECT COUNT(*) from Weight")
+    int countWeights();
 
     @Query("SELECT * FROM activity WHERE uid BETWEEN :startDate AND :endDate")
     public Activity[] loadAllActivitiesBetweenDates(int startDate, int endDate);
