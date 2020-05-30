@@ -28,6 +28,10 @@ private Activity[] mActivity;
     private DecimalFormat numberFormat = new DecimalFormat("#.000");
     //text for text objects
 
+    // fix this shit tomoz,
+    LineGraphSeries<Weight> series = new LineGraphSeries<Weight>();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //Links our Graphview to the XML object
@@ -53,11 +57,7 @@ private Activity[] mActivity;
             mUsers = db.activityDao().loadAllUsers();
             mActivity = db.activityDao().loadAllActivities();
         }
-        LineGraphSeries<Weight> series = new LineGraphSeries<Weight>();
-        for (int i = 0; i >= mWeights.length; i++)
-        {
-            series.appendData(new Weight(mWeights[i].mWeight, mWeights[i].mDate), true, mWeights.length);
-        }
+
         graph.addSeries(series);
 
 
