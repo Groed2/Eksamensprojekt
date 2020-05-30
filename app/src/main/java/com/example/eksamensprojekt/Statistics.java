@@ -64,9 +64,7 @@ private Activity[] mActivity;
                 finish();
             }
         });
-        if (mWeights.length != null)
-        text = mWeights[mWeights.length-1].mWeight.toString();
-        currWeight.setText(text);
+       
 
 
 
