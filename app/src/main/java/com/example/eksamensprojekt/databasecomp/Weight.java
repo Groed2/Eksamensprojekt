@@ -3,6 +3,7 @@ package com.example.eksamensprojekt.databasecomp;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverter;
 
@@ -24,6 +25,12 @@ public class Weight implements DataPointInterface {
         long date = System.currentTimeMillis();
         this.mWeight = mWeight;
         this.mDate = new Date(date);
+    }
+    @Ignore
+    public Weight (double mWeight, Date mDate)
+    {
+        this.mWeight = mWeight;
+        this.mDate = mDate;
     }
 
 

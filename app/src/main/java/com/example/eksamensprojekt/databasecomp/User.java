@@ -12,9 +12,9 @@ public class User {
     @ColumnInfo(name = "InitialWeight")
     public double mInitWeight;
     @ColumnInfo(name = "Height")
-    public int mHeight;
+    public double mHeight;
 
-    public User(double mInitWeight, int mHeight)
+    public User(double mInitWeight, double mHeight)
     {
         this.mInitWeight = mInitWeight;
         this.mHeight = mHeight;

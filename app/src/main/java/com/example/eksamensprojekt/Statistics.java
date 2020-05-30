@@ -16,6 +16,7 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 
 import org.w3c.dom.Text;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Statistics extends AppCompatActivity {
@@ -24,6 +25,7 @@ private Weight[] mWeights;
 private User[] mUsers;
 private Activity[] mActivity;
     private String text;
+    private DecimalFormat numberFormat = new DecimalFormat("#.000");
     //text for text objects
 
     @Override
@@ -40,23 +42,52 @@ private Activity[] mActivity;
             db.activityDao().insert(weight);
             weight = new Weight(85.0);
             db.activityDao().insert(weight);
-            User user = new User(82.2, 179);
+            User user = new User(82.2, 1.79);
             db.activityDao().insert(user);
             mWeights = db.activityDao().loadAllWeightElements();
             mUsers = db.activityDao().loadAllUsers();
             mActivity = db.activityDao().loadAllActivities();
         }
+        else {
+            mWeights = db.activityDao().loadAllWeightElements();
+            mUsers = db.activityDao().loadAllUsers();
+            mActivity = db.activityDao().loadAllActivities();
+        }
+        LineGraphSeries<Weight> series = new LineGraphSeries<Weight>();
+        for (int i = 0; i >= mWeights.length; i++)
+        {
+            series.appendData(new Weight(mWeights[i].mWeight, mWeights[i].mDate), true, mWeights.length);
+        }
+        graph.addSeries(series);
 
 
 
 
         //Buttons and text objects
+
+        //show last activity
         TextView lastAct = findViewById(R.id.activityanswer);
+        //shows initial weight
         TextView initWeight = findViewById(R.id.startweightanswer);
-        TextView initBMI = findViewById(R.id.BMIanswer);
+        text = String.valueOf(mUsers[mUsers.length-1].mInitWeight);
+        initWeight.setText(text);
+        // shows initial BMI
+        TextView initBMI = findViewById(R.id.startBMIanswer);
+        text = String.valueOf(numberFormat.format(mUsers[mUsers.length-1].mInitWeight / (mUsers[mUsers.length-1].mHeight * mUsers[mUsers.length-1].mHeight)));
+        initBMI.setText(text);
+        //shows total weight loss from start
         TextView WeightLoss = findViewById(R.id.weightlostanswer);
-        TextView CurrBMI = findViewById(R.id.BMITextField);
-        TextView currWeight = findViewById(R.id.weekTextview);
+        text = String.valueOf(numberFormat.format(mUsers[mUsers.length-1].mInitWeight - mWeights[mWeights.length-1].mWeight));
+        WeightLoss.setText(text);
+        //shows current BMI
+        TextView CurrBMI = findViewById(R.id.BMIanswer);
+        text = String.valueOf(numberFormat.format(mWeights[mWeights.length-1].mWeight / (mUsers[mUsers.length-1].mHeight * mUsers[mUsers.length-1].mHeight)));
+        CurrBMI.setText(text);
+        //shows current weight
+        TextView currWeight = findViewById(R.id.WeightShowCurrent);
+        text = mWeights[mWeights.length-1].mWeight.toString();
+        currWeight.setText(text);
+
         Button buttonBack = findViewById(R.id.button9);
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +95,7 @@ private Activity[] mActivity;
                 finish();
             }
         });
-       
+
 
 
 
@@ -73,11 +104,7 @@ private Activity[] mActivity;
 
 
     }
-    LineGraphSeries<Weight> series = new LineGraphSeries<Weight>(new Weight[] {
-            new Weight(86.0),
-            new Weight(85.0),
-            new Weight(84.0)
-    });
+
 
 
 
