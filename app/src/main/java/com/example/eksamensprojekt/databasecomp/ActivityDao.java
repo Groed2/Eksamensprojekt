@@ -46,6 +46,9 @@ public interface ActivityDao {
     @Query("SELECT COUNT(*) from Weight")
     int countWeights();
 
+    @Query("SELECT COUNT(*) FROM USER")
+    int countUsers();
+
     @Query("SELECT * FROM activity WHERE uid BETWEEN :startDate AND :endDate")
     public Activity[] loadAllActivitiesBetweenDates(int startDate, int endDate);
 
